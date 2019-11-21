@@ -4,18 +4,24 @@ import pandas as pd
 from flask import Flask, jsonify, render_template
 import sys
 import numpy as np
-
+from xgboost import XGBClassifier
+# from keras.models import load_model
+from flask import Markup
+import json
 app = flask.Flask(__name__, template_folder='templates')
 
 model_SVC = pickle.load(open("../pickle_SVC.pkl","rb"))
 model_KNN = pickle.load(open("../pickle-KNN_unscaled.pkl","rb"))
+model_LR = pickle.load(open("pickle_lr.pkl","rb"))
+model_RF = pickle.load(open("pickle_rf.pkl","rb"))
+model_XG = pickle.load(open("pickle_xg.pkl","rb"))
+model_NB = pickle.load(open("pickle_nb.pkl","rb"))
+# model_NN = load_model('nn_model.h5', encoding='cp1252')
 
 
 @app.route("/")
 def index():
-    """Return the homepage."""
-    
-    return render_template("index.html")
+    return render_template("index2.html")
 
 @app.route('/ETL')
 def ETL():
@@ -160,12 +166,34 @@ def main():
         KNN_pred = model_KNN.predict(new_X_test_data)
         KNN_pred_list = KNN_pred.tolist()
 
+        LR_pred = model_LR.predict(new_X_test_data)
+        LR_pred_list = LR_pred.tolist()
+
+        RF_pred = model_RF.predict(new_X_test_data)
+        RF_pred_list = RF_pred.tolist()
+
+        XG_pred = model_XG.predict(new_X_test_data)
+        XG_pred_list = XG_pred.tolist()
+
+        NB_pred = model_NB.predict(new_X_test_data)
+        NB_pred_list = NB_pred.tolist()
+
+        # NN_pred = model_NN.predict(new_X_test_data)
+        # NN_pred_list = NN_pred.tolist()
+
+        # Accessing the first element of the list from every result list above
+
+        svc_prediction = str(SVC_pred_list[0])
+        nb_prediction = str(NB_pred_list[0])
+        xg_prediction = str(XG_pred_list[0])
+        knn_prediction = str(KNN_pred_list[0])
+        lr_prediction = str(LR_pred_list[0])
+        rf_prediction = str(RF_pred_list[0])
         # result_df = pd.DataFrame(pred)
-        result = {"SVC_Prediction": SVC_pred_list, "SVC_AUROC_Score": "79.5%", \
-                  "KNN_Prediction": KNN_pred_list, "KNN_AUROC_Score": "80.7%"}
-
-        return jsonify(result)
-
+        result = {"SVC_Prediction": svc_prediction,"NB_Prediction": nb_prediction,"XG_Prediction": xg_prediction, "KNN_Prediction": knn_prediction,"LR_Prediction": lr_prediction, "RF_Prediction": rf_prediction}
+        print(result, file=sys.stdout)
+        #Used json.dumps to get result rendering results.html on POST
+        return render_template('results.html', data=json.dumps(result))
 
 
 

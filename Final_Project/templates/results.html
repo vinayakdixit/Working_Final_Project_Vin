@@ -1,0 +1,18 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>Prediction Results </title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+      <link rel="stylesheet" type="text/css" href="/style/style.css" title="style" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+</head>
+<body>
+<!-- receiving The json.dumps object from demo.py in a div called divdata.  This way all the results are here -->
+<div id="divdata" style="display: none;">{{data}}</div>
+<!-- appy.js is called here as similar to a library in a static format as required by flask server -->
+<script src="{{ url_for('static', filename="js/appy.js")}}"></script>
+</body>
+<html>
