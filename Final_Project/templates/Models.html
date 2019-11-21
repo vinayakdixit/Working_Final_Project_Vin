@@ -647,13 +647,60 @@ table tr td
                           <h2>AUC Score: %</h2>
                           <div class="row">
                             <div class="col-sm-4" style="background-color:white;">
-                                <img src="" alt="SVC ROC" style='height: 100%; width: 100%; object-fit: contain'/>
+                                <img src="https://github.com/kgouldthorpe/Final_Project/blob/master/ROC_Curve_SVC.png?raw=true" alt="SVC ROC" style='height: 100%; width: 100%; object-fit: contain'/>
                             </div>
                             <div class="col-sm-4" style="background-color:white;">
-                                
+                              <table border="1" class="dataframe">
+                                <thead>
+                                  <tr style="text-align: right;">
+                                    <th></th>
+                                    <th>f1-score</th>
+                                    <th>precision</th>
+                                    <th>recall</th>
+                                    <th>support</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <th>no-attack</th>
+                                    <td>0.759611</td>
+                                    <td>0.699266</td>
+                                    <td>0.831355</td>
+                                    <td>8592.000000</td>
+                                  </tr>
+                                  <tr>
+                                    <th>attack</th>
+                                    <td>0.708266</td>
+                                    <td>0.791120</td>
+                                    <td>0.641121</td>
+                                    <td>8560.000000</td>
+                                  </tr>
+                                  <tr>
+                                    <th>accuracy</th>
+                                    <td>0.736416</td>
+                                    <td>0.736416</td>
+                                    <td>0.736416</td>
+                                    <td>0.736416</td>
+                                  </tr>
+                                  <tr>
+                                    <th>macro avg</th>
+                                    <td>0.733938</td>
+                                    <td>0.745193</td>
+                                    <td>0.736238</td>
+                                    <td>17152.000000</td>
+                                  </tr>
+                                  <tr>
+                                    <th>weighted avg</th>
+                                    <td>0.733986</td>
+                                    <td>0.745107</td>
+                                    <td>0.736416</td>
+                                    <td>17152.000000</td>
+                                  </tr>
+                                </tbody>
+                              </table>
                             </div>
                             <div class="col-sm-4" style="background-color:white;">
-                                <img src="" alt="Confusion Matrix SVC" style='height: 100%; width: 100%; object-fit: contain'/>
+                                <img src="https://github.com/kgouldthorpe/Final_Project/blob/master/Confusion_Matrix_SVC.png?raw=true" alt="Confusion Matrix SVC" style='height: 100%; width: 100%; object-fit: contain'/>
                             </div>
                           </div>
                         </div>
